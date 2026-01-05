@@ -1,0 +1,107 @@
+﻿@page "/produto/{id:int}"
+@using TP.Shared.RCL.DTOs
+@using TP.Shared.RCL.Services
+@inject IProdutosService ProdutosService
+@inject ICarrinhoService CarrinhoService
+@inject NavigationManager Navigation
+
+<PageTitle>Detalhes do Produto</PageTitle>
+
+<div class="container my-4">
+    <button class="btn btn-outline-secondary mb-4" @onclick="Voltar">
+        <i class="bi bi-arrow-left"></i> Voltar à Loja
+    </button>
+
+    @if (mensagemSucesso)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Produto adicionado ao carrinho! <a href="/carrinho" class="alert-link">Ver Carrinho</a>
+            <button type="button" class="btn-close" @onclick="() => mensagemSucesso = false"></button>
+        </div>
+    }
+
+    @if (produto == null)
+    {
+        <div class="text-center mt-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p>A carregar detalhes...</p>
+        </div>
+    }
+    else
+    {
+        <div class="card shadow-sm border-0">
+            <div class="row g-0">
+                <div class="col-md-5 bg-light d-flex align-items-center justify-content-center p-3">
+                    <img src="@produto.ImagemUrl" class="img-fluid rounded shadow-sm"
+                         style="max-height: 400px; width: auto;"
+                         onerror="this.src='/img/sem-imagem.png'" />
+                </div>
+
+                <div class="col-md-7">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h2 class="card-title fw-bold text-primary">@produto.Titulo</h2>
+                            <span class="badge bg-secondary">@produto.CategoriaNome</span>
+                        </div>
+
+                        <h3 class="text-success fw-bold my-3">@produto.Preco.ToString("C")</h3>
+                        <p class="card-text lead">@produto.Descricao</p>
+                        <hr />
+
+                        <div class="d-flex align-items-center gap-3 mt-4">
+                            <div class="input-group" style="width: 130px;">
+                                <button class="btn btn-outline-secondary" @onclick="() => AlterarQtd(-1)">-</button>
+                                <input type="text" class="form-control text-center" value="@quantidade" readonly />
+                                <button class="btn btn-outline-secondary" @onclick="() => AlterarQtd(1)">+</button>
+                            </div>
+
+                            <button class="btn btn-primary btn-lg flex-grow-1" @onclick="AdicionarAoCarrinho">
+                                <i class="bi bi-cart-plus-fill"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+
+                        <div class="mt-3 text-muted small">
+                            <i class="bi bi-truck"></i> Entrega: @produto.ModoEntregaNome
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private ProdutoDto? produto;
+    private int quantidade = 1;
+    private bool mensagemSucesso = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        produto = await ProdutosService.GetProdutoByIdAsync(Id);
+    }
+
+    private void AlterarQtd(int valor)
+    {
+        quantidade += valor;
+        if (quantidade < 1) quantidade = 1;
+    }
+
+    private void AdicionarAoCarrinho()
+    {
+        if (produto != null)
+        {
+            // Usa o serviço para guardar
+            CarrinhoService.AdicionarItem(produto, quantidade);
+
+            // Mostra feedback visual
+            mensagemSucesso = true;
+
+            // (Opcional) Reiniciar quantidade
+            quantidade = 1;
+        }
+    }
+
+    private void Voltar() => Navigation.NavigateTo("/");
+}
+}

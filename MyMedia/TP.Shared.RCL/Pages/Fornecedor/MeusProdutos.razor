@@ -1,0 +1,69 @@
+﻿@page "/fornecedor/produtos"
+@using TP.Shared.RCL.DTOs
+@using TP.Shared.RCL.Services
+@inject IProdutosService ProdutosService
+@inject NavigationManager Navigation
+@attribute [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Fornecedor")]
+
+<h3>Os Meus Produtos</h3>
+
+<div class="mb-3">
+    <button class="btn btn-success" @onclick="CriarNovo">
+        <i class="bi bi-plus-circle"></i> Novo Produto
+    </button>
+</div>
+
+@if (produtos == null)
+{
+    <p>A carregar...</p>
+}
+else if (!produtos.Any())
+{
+    <div class="alert alert-warning">Ainda não tem produtos à venda.</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Imagem</th>
+                <th>Título</th>
+                <th>Preço Base</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in produtos)
+            {
+                <tr>
+                    <td><img src="@p.ImagemUrl" width="40" /></td>
+                    <td>@p.Titulo</td>
+                    <td>@p.Preco.ToString("C")</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" @onclick="() => Editar(p.Id)">Editar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<ProdutoDto>? produtos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        produtos = await ProdutosService.GetMeusProdutosAsync();
+    }
+
+    private void CriarNovo()
+    {
+        // Vamos criar esta página a seguir
+        Navigation.NavigateTo("/fornecedor/produtos/criar");
+    }
+
+    private void Editar(int id)
+    {
+        Navigation.NavigateTo($"/fornecedor/produtos/editar/{id}");
+    }
+}

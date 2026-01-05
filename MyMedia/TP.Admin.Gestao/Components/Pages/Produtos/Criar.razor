@@ -1,0 +1,244 @@
+﻿@page "/produtos/criar"
+@using Microsoft.EntityFrameworkCore
+@using TP.Backend.Data
+@using TP.Backend.Data.Entidades
+@inject ApplicationDbContext Context
+@inject NavigationManager Navigation
+
+<h3>Criar Novo Produto</h3>
+
+@if (ListaCategorias == null)
+{
+    <p><em>A carregar listas...</em></p>
+}
+else
+{
+    @if (!string.IsNullOrEmpty(MensagemErro))
+    {
+        <div class="alert alert-danger">@MensagemErro</div>
+    }
+
+    <div class="row">
+        <div class="col-md-8">
+            <EditForm Model="Produto" OnValidSubmit="GravarProduto" FormName="FormCriarProduto">
+                <DataAnnotationsValidator />
+                <ValidationSummary class="text-danger" />
+
+                <div class="row">
+                    @* --- COLUNA DA ESQUERDA: DADOS GERAIS --- *@
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Título</label>
+                            <InputText class="form-control" @bind-Value="Produto.Titulo" placeholder="Ex: iPhone 15" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <InputTextArea class="form-control" @bind-Value="Produto.Descricao" rows="4" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Categoria</label>
+                            <InputSelect @bind-Value="Produto.CategoriaId" class="form-select">
+                                <option value="">-- Selecione --</option>
+                                @foreach (var cat in ListaCategorias)
+                                {
+                                    <option value="@cat.Id">@cat.Nome</option>
+                                }
+                            </InputSelect>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Modo de Entrega</label>
+                            <InputSelect @bind-Value="Produto.ModoEntregaId" class="form-select">
+                                <option value="">-- Selecione --</option>
+                                @foreach (var modo in ListaModosEntrega)
+                                {
+                                    <option value="@modo.Id">@modo.Nome</option>
+                                }
+                            </InputSelect>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Imagem URL</label>
+                            <InputText class="form-control" @bind-Value="Produto.ImagemUrl" placeholder="http://..." />
+                        </div>
+                    </div>
+
+                    @* --- COLUNA DA DIREITA: PREÇOS E STOCK --- *@
+                    <div class="col-md-6">
+
+                        @* === BLOCO DE CÁLCULO DE PREÇO === *@
+                        <div class="card p-3 mb-3 bg-light border-primary">
+                            <h6 class="text-primary fw-bold">Definição de Preço</h6>
+
+                            <div class="mb-3">
+                                <label class="form-label">Preço Base (Fornecedor) €</label>
+                                <InputNumber class="form-control" @bind-Value="Produto.PrecoBase" @oninput="RecalcularAoMudarBase" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Margem de Lucro (%)</label>
+                                @* Variável auxiliar para calcular *@
+                                <input type="number" class="form-control" value="@margemPercentagem" @onchange="RecalcularAoMudarMargem" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Preço Final (Cliente) €</label>
+                                <InputNumber class="form-control bg-white fw-bold text-success" @bind-Value="Produto.PrecoFinal" readonly />
+                            </div>
+                        </div>
+                        @* =================================== *@
+
+                        <div class="mb-3">
+                            <label class="form-label">Stock Inicial</label>
+                            <InputNumber class="form-control" @bind-Value="Produto.Stock" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Estado Inicial</label>
+                            <InputSelect @bind-Value="Produto.Estado" class="form-select">
+                                @foreach (var estado in Enum.GetValues(typeof(ProdutoEstado)))
+                                {
+                                    <option value="@estado">@estado</option>
+                                }
+                            </InputSelect>
+                            <div class="form-text">
+                                Se colocares "Ativo", aparece logo na loja.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 mb-5">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <i class="bi bi-plus-circle"></i> Criar Produto
+                    </button>
+                    <a href="/produtos" class="btn btn-secondary btn-lg ms-2">Cancelar</a>
+                </div>
+            </EditForm>
+        </div>
+
+        @* --- COLUNA DE PREVIEW --- *@
+        <div class="col-md-4">
+            <div class="card sticky-top" style="top: 20px;">
+                <div class="card-header bg-light">Pré-visualização</div>
+                <div class="card-body text-center">
+                    @if (!string.IsNullOrEmpty(Produto.ImagemUrl))
+                    {
+                        <img src="@Produto.ImagemUrl" class="img-fluid rounded" style="max-height: 200px;" onerror="this.style.display='none'" />
+                    }
+                    else
+                    {
+                        <div class="text-muted p-4 border rounded bg-white">Sem Imagem</div>
+                    }
+
+                    <h5 class="mt-3">@(string.IsNullOrEmpty(Produto.Titulo) ? "Título do Produto" : Produto.Titulo)</h5>
+
+                    <h3 class="text-success">
+                        @Produto.PrecoFinal.ToString("C")
+                    </h3>
+
+                    <span class="badge bg-secondary">@Produto.Estado</span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [SupplyParameterFromForm]
+    public Produto Produto { get; set; } = new();
+
+    private List<Categoria>? ListaCategorias;
+    private List<ModoEntrega>? ListaModosEntrega;
+    private string MensagemErro = "";
+
+    // Margem por defeito de 20%
+    private double margemPercentagem = 20;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            ListaCategorias = await Context.Categorias.ToListAsync();
+            ListaModosEntrega = await Context.ModosEntrega.ToListAsync();
+
+            // Define um estado padrão
+            Produto.Estado = ProdutoEstado.Pendente;
+        }
+        catch (Exception ex)
+        {
+            MensagemErro = "Erro ao carregar listas: " + ex.Message;
+        }
+    }
+
+    // Recalcula se mudar a percentagem da margem
+    private void RecalcularAoMudarMargem(ChangeEventArgs e)
+    {
+        if (double.TryParse(e.Value?.ToString(), out double novaMargem))
+        {
+            margemPercentagem = novaMargem;
+            AtualizarPrecoFinal();
+        }
+    }
+
+    // Recalcula se mudar o preço base
+    private void RecalcularAoMudarBase(ChangeEventArgs e)
+    {
+        if (decimal.TryParse(e.Value?.ToString(), out decimal novoBase))
+        {
+            Produto.PrecoBase = novoBase;
+            AtualizarPrecoFinal();
+        }
+    }
+
+    private void AtualizarPrecoFinal()
+    {
+        // Fórmula: Base + (Base * Margem%)
+        Produto.PrecoFinal = Produto.PrecoBase + (Produto.PrecoBase * (decimal)(margemPercentagem / 100));
+    }
+
+    private async Task GravarProduto()
+    {
+        try
+        {
+            // === CORREÇÃO DO ERRO FOREIGN KEY ===
+            // 1. Procurar o utilizador "Admin" para associar como dono do produto
+            var adminUser = await Context.Users
+                .FirstOrDefaultAsync(u => u.Email == "admin@mymedia.com");
+
+            // Se não encontrar o admin específico, tenta apanhar o primeiro utilizador que existir
+            if (adminUser == null)
+            {
+                adminUser = await Context.Users.FirstOrDefaultAsync();
+            }
+
+            // Se mesmo assim for null, não podemos gravar (a BD exige um dono)
+            if (adminUser == null)
+            {
+                MensagemErro = "ERRO CRÍTICO: Não existe nenhum utilizador na Base de Dados. Corre a aplicação API para executar o SeedData primeiro.";
+                return;
+            }
+
+            // 2. Preencher o ID do Fornecedor
+            Produto.FornecedorId = adminUser.Id;
+
+            // 3. Garantir que o preço final está atualizado e guardar a margem (opcional)
+            Produto.PrecoFinal = Produto.PrecoBase + (Produto.PrecoBase * (decimal)(margemPercentagem / 100));
+            Produto.MargemLucro = (decimal)margemPercentagem;
+            Produto.IsParaVenda = true; // Garante que fica marcado para venda
+
+            // 4. Gravar na BD
+            Context.Produtos.Add(Produto);
+            await Context.SaveChangesAsync();
+            Navigation.NavigateTo("/produtos");
+        }
+        catch (Exception ex)
+        {
+            // Mostra o erro interno (InnerException) para sabermos exatamente o que falhou
+            var erroDetalhado = ex.InnerException?.Message ?? ex.Message;
+            MensagemErro = "Erro ao criar produto: " + erroDetalhado;
+        }
+    }
+}

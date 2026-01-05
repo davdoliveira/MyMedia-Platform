@@ -1,0 +1,108 @@
+﻿@page "/admin/encomendas"
+@using Microsoft.EntityFrameworkCore
+@using TP.Backend.Data
+@using TP.Backend.Data.Entidades
+@inject ApplicationDbContext Context
+@attribute [Microsoft.AspNetCore.Authorization.Authorize]
+
+<PageTitle>Gestão de Encomendas</PageTitle>
+
+<h1>Encomendas Recebidas</h1>
+
+@if (ListaEncomendas == null)
+{
+    <p><em>A carregar encomendas...</em></p>
+}
+else if (!ListaEncomendas.Any())
+{
+    <div class="alert alert-info">Não há encomendas registadas.</div>
+}
+else
+{
+    <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>#ID</th>
+                <th>Data</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var enc in ListaEncomendas)
+            {
+                <tr>
+                    <td>@enc.Id</td>
+                    <td>@enc.DataEncomenda.ToString("g")</td>
+                    <td>
+                        @if (enc.Cliente != null)
+                        {
+                            <div>@enc.Cliente.NomeCompleto</div>
+                            <small class="text-muted">@enc.Cliente.Email</small>
+                        }
+                        else
+                        {
+                            <span>Desconhecido</span>
+                        }
+                    </td>
+                    <td class="fw-bold">@enc.Total.ToString("C")</td>
+                    <td>
+                        @if (enc.EstaPaga)
+                        {
+                            <span class="badge bg-success">Paga / Enviada</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">Pendente</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="/encomendas/detalhes/@enc.Id" class="btn btn-sm btn-primary">
+                            <i class="bi bi-eye"></i> Ver / Expedir
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="p-0">
+                        <div class="accordion-collapse collapse show ps-5 py-2 bg-light">
+                            <small class="fw-bold">Itens:</small>
+                            <ul class="list-inline m-0">
+                                @foreach (var item in enc.Itens)
+                                {
+                                    <li class="list-inline-item border rounded px-2 bg-white">
+                                        @item.Produto.Titulo <span class="badge bg-secondary">x @item.Quantidade</span>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Encomenda>? ListaEncomendas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Carregar encomendas com Cliente e Produtos (Include é essencial!)
+        ListaEncomendas = await Context.Encomendas
+            .Include(e => e.Cliente)
+            .Include(e => e.Itens)
+                .ThenInclude(i => i.Produto)
+            .OrderByDescending(e => e.DataEncomenda)
+            .ToListAsync();
+    }
+
+    private async Task MarcarComoPaga(Encomenda encomenda)
+    {
+        // Simula o processamento/expedição
+        encomenda.EstaPaga = true;
+        await Context.SaveChangesAsync();
+        // Não é preciso recarregar a lista porque o objeto 'encomenda' é o mesmo da lista
+    }
+}

@@ -1,0 +1,302 @@
+﻿@page "/produtos"
+@using Microsoft.EntityFrameworkCore
+@using TP.Backend.Data
+@using TP.Backend.Data.Entidades
+@inject ApplicationDbContext Context
+@inject NavigationManager Navigation
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>📦 Gestão de Produtos</h1>
+        <a href="/produtos/criar" class="btn btn-success">
+            <i class="bi bi-plus-lg"></i> Novo Produto
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-white py-3">
+            <div class="row g-3 align-items-center">
+                @* --- BARRA DE PESQUISA --- *@
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control" placeholder="Pesquisar por nome..."
+                               @bind="TermoPesquisa" @bind:event="oninput" @onkeyup="CarregarProdutos" />
+                    </div>
+                </div>
+
+                @* --- FILTRO DE CATEGORIA (Opcional) --- *@
+                <div class="col-md-4">
+                    <select class="form-select" @onchange="FiltrarCategoria">
+                        <option value="">Todas as Categorias</option>
+                        @foreach (var cat in ListaCategorias)
+                        {
+                            <option value="@cat.Id">@cat.Nome</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body p-0">
+            @if (Produtos == null)
+            {
+                <div class="text-center p-5">
+                    <div class="spinner-border text-primary"></div>
+                </div>
+            }
+            else if (!Produtos.Any())
+            {
+                <div class="text-center p-5 text-muted">
+                    <h5>Nenhum produto encontrado.</h5>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                @* --- CABEÇALHOS ORDENÁVEIS --- *@
+                                <th style="width: 50px;">IMG</th>
+                                <th role="button" @onclick='() => Ordenar("Titulo")'>
+                                    Título @RenderSortIcon("Titulo")
+                                </th>
+                                <th role="button" @onclick='() => Ordenar("Categoria")'>
+                                    Categoria @RenderSortIcon("Categoria")
+                                </th>
+                                <th role="button" @onclick='() => Ordenar("Preco")'>
+                                    Preço Final @RenderSortIcon("Preco")
+                                </th>
+                                <th role="button" @onclick='() => Ordenar("Stock")'>
+                                    Stock @RenderSortIcon("Stock")
+                                </th>
+                                <th>Estado</th>
+                                <th class="text-end">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Produtos)
+                            {
+                                <tr>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.ImagemUrl))
+                                        {
+                                            <img src="@item.ImagemUrl" class="rounded" width="40" height="40" style="object-fit:cover" />
+                                        }
+                                        else
+                                        {
+                                            <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center" style="width:40px; height:40px;">
+                                                <i class="bi bi-image"></i>
+                                            </div>
+                                        }
+                                    </td>
+                                    <td class="fw-bold">@item.Titulo</td>
+                                    <td>
+                                        <span class="badge bg-light text-dark border">
+                                            @(item.Categoria?.Nome ?? "N/A")
+                                        </span>
+                                    </td>
+                                    <td class="text-success fw-bold">@item.PrecoFinal.ToString("C")</td>
+                                    <td>
+                                        @if (item.Stock < 5)
+                                        {
+                                            <span class="text-danger fw-bold">@item.Stock (Baixo)</span>
+                                        }
+                                        else
+                                        {
+
+                                            <span>@item.Stock</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.Estado == ProdutoEstado.Ativo)
+                                        {
+                                            <span class="badge bg-success">Ativo</span>
+                                        }
+                                        else if (item.Estado == ProdutoEstado.Pendente)
+                                        {
+                                            <span class="badge bg-warning text-dark">Pendente</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">Inativo</span>
+                                        }
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="/produtos/editar/@item.Id" class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        @* Botão Apagar (Implementação futura) *@
+                                        <button class="btn btn-sm btn-outline-danger" @onclick="() => ApagarProduto(item)">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+
+        @* --- PAGINAÇÃO --- *@
+        <div class="card-footer bg-white d-flex justify-content-between align-items-center py-3">
+            <span class="text-muted small">
+                Mostrando @((PaginaAtual - 1) * TamanhoPagina + 1) a @(Math.Min(PaginaAtual * TamanhoPagina, TotalRegistos)) de @TotalRegistos registos
+            </span>
+
+            <nav>
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item @(PaginaAtual == 1 ? "disabled" : "")">
+                        <button class="page-link" @onclick="PaginaAnterior">Anterior</button>
+                    </li>
+                    @for (int i = 1; i <= TotalPaginas; i++)
+                    {
+                        var pagina = i; // Cópia local para o lambda
+                                        <li class="page-item @(PaginaAtual == pagina ? "active" : "")">
+                                            <button class="page-link" @onclick="() => IrParaPagina(pagina)">@pagina</button>
+                                        </li>
+                    }
+                    <li class="page-item @(PaginaAtual == TotalPaginas ? "disabled" : "")">
+                        <button class="page-link" @onclick="ProximaPagina">Seguinte</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+@code {
+    // Dados da Tabela
+    private List<Produto>? Produtos;
+    private List<Categoria> ListaCategorias = new();
+
+    // Filtros e Ordenação
+    private string TermoPesquisa = "";
+    private int? CategoriaFiltroId;
+    private string ColunaOrdenacao = "Titulo";
+    private bool OrdemAscendente = true;
+
+    // Paginação
+    private int PaginaAtual = 1;
+    private int TamanhoPagina = 10;
+    private int TotalRegistos = 0;
+    private int TotalPaginas => (int)Math.Ceiling((double)TotalRegistos / TamanhoPagina);
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Carregar categorias para o filtro dropdown
+        ListaCategorias = await Context.Categorias.ToListAsync();
+        await CarregarProdutos();
+    }
+
+    private async Task CarregarProdutos()
+    {
+        // 1. Iniciar Query (Não executa logo na BD)
+        var query = Context.Produtos
+            .Include(p => p.Categoria)
+            .AsQueryable();
+
+        // 2. Aplicar Filtros (Pesquisa por Texto)
+        if (!string.IsNullOrWhiteSpace(TermoPesquisa))
+        {
+            query = query.Where(p => p.Titulo.Contains(TermoPesquisa) || p.Descricao.Contains(TermoPesquisa));
+        }
+
+        // 3. Aplicar Filtro (Categoria)
+        if (CategoriaFiltroId.HasValue)
+        {
+            query = query.Where(p => p.CategoriaId == CategoriaFiltroId.Value);
+        }
+
+        // 4. Contar o total (para a paginação funcionar)
+        TotalRegistos = await query.CountAsync();
+
+        // 5. Aplicar Ordenação
+        query = ColunaOrdenacao switch
+        {
+            "Titulo" => OrdemAscendente ? query.OrderBy(p => p.Titulo) : query.OrderByDescending(p => p.Titulo),
+            "Preco" => OrdemAscendente ? query.OrderBy(p => p.PrecoFinal) : query.OrderByDescending(p => p.PrecoFinal),
+            "Stock" => OrdemAscendente ? query.OrderBy(p => p.Stock) : query.OrderByDescending(p => p.Stock),
+            "Categoria" => OrdemAscendente ? query.OrderBy(p => p.Categoria.Nome) : query.OrderByDescending(p => p.Categoria.Nome),
+            _ => query.OrderBy(p => p.Titulo)
+        };
+
+        // 6. Aplicar Paginação (Skip / Take) e Executar a Query
+        Produtos = await query
+            .Skip((PaginaAtual - 1) * TamanhoPagina)
+            .Take(TamanhoPagina)
+            .ToListAsync();
+    }
+
+    // --- MÉTODOS AUXILIARES ---
+
+    private async Task Ordenar(string coluna)
+    {
+        if (ColunaOrdenacao == coluna)
+        {
+            // Se clicar na mesma coluna, inverte a ordem
+            OrdemAscendente = !OrdemAscendente;
+        }
+        else
+        {
+            // Se for coluna nova, começa ascendente
+            ColunaOrdenacao = coluna;
+            OrdemAscendente = true;
+        }
+        await CarregarProdutos();
+    }
+
+    private RenderFragment RenderSortIcon(string coluna)
+    {
+        if (ColunaOrdenacao != coluna) return builder => { };
+
+        return OrdemAscendente
+            ? builder => builder.AddMarkupContent(0, "<i class='bi bi-arrow-up'></i>")
+            : builder => builder.AddMarkupContent(0, "<i class='bi bi-arrow-down'></i>");
+    }
+
+    private async Task FiltrarCategoria(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value?.ToString(), out int id))
+            CategoriaFiltroId = id;
+        else
+            CategoriaFiltroId = null;
+
+        PaginaAtual = 1; // Reset à página
+        await CarregarProdutos();
+    }
+
+    private async Task PaginaAnterior()
+    {
+        if (PaginaAtual > 1)
+        {
+            PaginaAtual--;
+            await CarregarProdutos();
+        }
+    }
+
+    private async Task ProximaPagina()
+    {
+        if (PaginaAtual < TotalPaginas)
+        {
+            PaginaAtual++;
+            await CarregarProdutos();
+        }
+    }
+
+    private async Task IrParaPagina(int p)
+    {
+        PaginaAtual = p;
+        await CarregarProdutos();
+    }
+
+    private async Task ApagarProduto(Produto p)
+    {
+        // Podes implementar um JS Confirm aqui
+        Context.Produtos.Remove(p);
+        await Context.SaveChangesAsync();
+        await CarregarProdutos();
+    }
+}

@@ -1,0 +1,158 @@
+﻿@page "/fornecedor/produtos/criar"
+@using TP.Shared.RCL.DTOs
+@using TP.Shared.RCL.Services
+@* REMOVIDO: @using System.Net.Http.Json (Não é necessário aqui, o Service trata disso) *@
+
+@inject IProdutosService ProdutosService
+@inject ICategoriasService CategoriasService
+@inject NavigationManager Navigation
+@* REMOVIDO: @inject HttpClient Http (Causava o erro no Mobile) *@
+
+@attribute [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Fornecedor")]
+
+<div class="container my-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">📦 Novo Produto (Fornecedor)</h4>
+        </div>
+        <div class="card-body">
+
+            @if (!string.IsNullOrEmpty(MensagemErro))
+            {
+                <div class="alert alert-danger">
+                    <i class="bi bi-exclamation-triangle-fill"></i> @MensagemErro
+                </div>
+            }
+
+            <EditForm Model="Produto" OnValidSubmit="Guardar">
+                <DataAnnotationsValidator />
+                <ValidationSummary class="text-danger mb-3" />
+
+                @* --- TÍTULO E DESCRIÇÃO --- *@
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Título</label>
+                    <InputText @bind-Value="Produto.Titulo" class="form-control" placeholder="Ex: iPhone 15 Pro" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Descrição</label>
+                    <InputTextArea @bind-Value="Produto.Descricao" class="form-control" rows="3" />
+                </div>
+
+                @* --- PREÇO E STOCK (Lógica da Margem) --- *@
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold text-success">Preço Base (€)</label>
+                        @* O Fornecedor preenche o 'Preco' do DTO, que será o PrecoBase na BD *@
+                        <InputNumber @bind-Value="Produto.Preco" class="form-control" />
+                        <div class="form-text text-muted">
+                            <small>Define quanto queres receber. O Admin adicionará a margem de lucro depois.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Stock Inicial</label>
+                        <InputNumber @bind-Value="Produto.Stock" class="form-control" />
+                    </div>
+                </div>
+
+                @* --- CATEGORIA E MODO DE ENTREGA --- *@
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Categoria</label>
+                        <InputSelect @bind-Value="Produto.CategoriaId" class="form-select">
+                            <option value="">-- Seleciona --</option>
+                            @if (ListaCategorias != null)
+                            {
+                                @foreach (var cat in ListaCategorias)
+                                {
+                                    <option value="@cat.Id">@cat.Nome</option>
+                                }
+                            }
+                        </InputSelect>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Modo de Entrega</label>
+                        <InputSelect @bind-Value="Produto.ModoEntregaId" class="form-select">
+                            <option value="">-- Seleciona --</option>
+                            @if (ListaModos != null)
+                            {
+                                @foreach (var modo in ListaModos)
+                                {
+                                    <option value="@modo.Id">@modo.Nome</option>
+                                }
+                            }
+                        </InputSelect>
+                    </div>
+                </div>
+
+                @* --- IMAGEM --- *@
+                <div class="mb-3">
+                    <label class="form-label">Imagem URL</label>
+                    <InputText @bind-Value="Produto.ImagemUrl" class="form-control" placeholder="http://..." />
+                </div>
+
+                @if (!string.IsNullOrEmpty(Produto.ImagemUrl))
+                {
+                    <div class="mb-3 text-center">
+                        <img src="@Produto.ImagemUrl" style="max-height: 150px; border-radius: 8px;" onerror="this.style.display='none'" />
+                    </div>
+                }
+
+                <hr />
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="/fornecedor/produtos" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-lg"></i> Submeter Produto
+                    </button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    private ProdutoDto Produto = new();
+
+    // Variáveis corretas
+    private List<CategoriaDto>? ListaCategorias;
+    private List<ModoEntregaDto>? ListaModos;
+
+    private string MensagemErro = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // Carregar listas usando os Services (não HttpClient direto)
+            ListaCategorias = await CategoriasService.GetCategoriasAsync();
+            ListaModos = await ProdutosService.GetModosEntregaAsync();
+        }
+        catch (Exception ex)
+        {
+            MensagemErro = "Erro ao carregar dados: " + ex.Message;
+        }
+    }
+
+    private async Task Guardar()
+    {
+        MensagemErro = "";
+
+        // Validações básicas manuais
+        if (Produto.CategoriaId <= 0) { MensagemErro = "Tens de escolher uma categoria!"; return; }
+        if (Produto.ModoEntregaId <= 0) { MensagemErro = "Tens de escolher um modo de entrega!"; return; }
+        if (Produto.Preco <= 0) { MensagemErro = "O preço base tem de ser maior que 0!"; return; }
+
+        // Enviar para a API
+        var sucesso = await ProdutosService.CriarProdutoAsync(Produto);
+
+        if (sucesso)
+        {
+            Navigation.NavigateTo("/fornecedor/produtos");
+        }
+        else
+        {
+            MensagemErro = "Ocorreu um erro ao guardar. Verifica a tua ligação.";
+        }
+    }
+}

@@ -1,0 +1,303 @@
+﻿@page "/catalogo"
+@using TP.Shared.RCL.DTOs
+@using TP.Shared.RCL.Services
+@inject IProdutosService ProdutosService
+@inject ICategoriasService CategoriasService
+
+@* --- ESTILO INCORPORADO (Para garantir que funciona) --- *@
+<style>
+    /* Contentor do Friso (A calha onde desliza) */
+    .meu-friso-container {
+        display: flex;
+        overflow-x: auto; /* Permite scroll lateral */
+        gap: 10px; /* Espaço entre botões */
+        padding: 10px 0;
+        white-space: nowrap; /* Não deixa quebrar linha */
+        margin-bottom: 15px;
+        /* Esconder scrollbar feia (mas manter funcionalidade) */
+        scrollbar-width: thin;
+        -ms-overflow-style: none;
+    }
+
+        .meu-friso-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .meu-friso-container::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 4px;
+        }
+
+    /* O Botão Individual */
+    .meu-friso-btn {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 20px; /* Arredondado */
+        border: 1px solid #ddd;
+        background-color: white;
+        color: #333;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s;
+        flex-shrink: 0; /* Garante que não encolhe */
+    }
+
+        /* Efeito Hover */
+        .meu-friso-btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* Botão Selecionado (Ativo) */
+        .meu-friso-btn.ativo {
+            background-color: #007bff; /* Azul */
+            color: white;
+            border-color: #007bff;
+            box-shadow: 0 4px 6px rgba(0,123,255, 0.3);
+        }
+
+    .destaque-card {
+        background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+        border: none;
+        border-left: 5px solid #ffc107; /* Amarelo Destaque */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+
+        .destaque-card:hover {
+            transform: scale(1.01);
+        }
+
+    .badge-destaque {
+        background-color: #ffc107;
+        color: #333;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+    }
+</style>
+
+<div class="container my-4">
+    @* --- 1. SECÇÃO DE DESTAQUE (NOVO) --- *@
+    @if (ProdutoDestaque != null)
+    {
+        <div class="card mb-5 destaque-card">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-4 text-center p-3">
+                    @if (!string.IsNullOrEmpty(ProdutoDestaque.ImagemUrl))
+                    {
+                        <img src="@ProdutoDestaque.ImagemUrl" class="img-fluid rounded" style="max-height: 200px;" />
+                    }
+                    else
+                    {
+                        <div class="text-muted p-5 bg-white rounded">Sem Imagem</div>
+                    }
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="mb-2">
+                            <span class="badge-destaque">⭐ Produto em Destaque</span>
+                        </div>
+                        <h3 class="card-title fw-bold">@ProdutoDestaque.Titulo</h3>
+                        <p class="card-text text-muted">@ProdutoDestaque.Descricao</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <h4 class="text-success mb-0 fw-bold">@ProdutoDestaque.Preco.ToString("C")</h4>
+                            <a href="/produto/@ProdutoDestaque.Id" class="btn btn-dark">
+                                Comprar Agora <i class="bi bi-cart-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @* ------------------------------------ *@
+    <h2 class="text-center mb-4">Catálogo</h2>
+
+    @if (TodasCategorias == null)
+    {
+        <div class="text-center"><div class="spinner-border text-primary"></div></div>
+    }
+    else
+    {
+        <div>
+            <small class="text-muted text-uppercase fw-bold">Categorias</small>
+            <div class="meu-friso-container">
+                <div class="meu-friso-btn @(CatNivel1Id == null ? "ativo" : "")"
+                     @onclick="() => SelecionarNivel1(null)">
+                    Todos
+                </div>
+                @foreach (var cat in CategoriasNivel1)
+                {
+                    <div class="meu-friso-btn @(CatNivel1Id == cat.Id ? "ativo" : "")"
+                         @onclick="() => SelecionarNivel1(cat.Id)">
+                        @cat.Nome
+                    </div>
+                }
+            </div>
+        </div>
+
+        @if (CategoriasNivel2.Any())
+        {
+            <div class="animated-fade">
+                <small class="text-muted text-uppercase fw-bold">Categoria</small>
+                <div class="meu-friso-container">
+                    @foreach (var cat in CategoriasNivel2)
+                    {
+                        <div class="meu-friso-btn @(CatNivel2Id == cat.Id ? "ativo" : "")"
+                             @onclick="() => SelecionarNivel2(cat.Id)">
+                            @cat.Nome
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        @if (CategoriasNivel3.Any())
+        {
+            <div class="animated-fade">
+                <small class="text-muted text-uppercase fw-bold">Específico</small>
+                <div class="meu-friso-container">
+                    @foreach (var cat in CategoriasNivel3)
+                    {
+                        <div class="meu-friso-btn @(CatNivel3Id == cat.Id ? "ativo" : "")"
+                             @onclick="() => SelecionarNivel3(cat.Id)">
+                            @cat.Nome
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+
+    <hr class="my-4" />
+
+    <div class="row g-4">
+        @if (ListaProdutos == null)
+        {
+            <div class="col-12 text-center p-5">
+                <div class="spinner-border text-secondary"></div>
+                <p class="mt-2">A carregar produtos...</p>
+            </div>
+        }
+        else if (!ListaProdutos.Any())
+        {
+            <div class="col-12 text-center p-5 bg-light rounded">
+                <h4 class="text-muted">Não encontrámos produtos nesta secção.</h4>
+            </div>
+        }
+        else
+        {
+            @foreach (var p in ListaProdutos)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div style="height: 200px; overflow: hidden; background: #eee;" class="d-flex align-items-center justify-content-center">
+                            @if (!string.IsNullOrEmpty(p.ImagemUrl))
+                            {
+                                <img src="@p.ImagemUrl" style="width: 100%; height: 100%; object-fit: cover;"
+                                     onerror="this.style.display='none'" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">Sem Imagem</span>
+                            }
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-truncate">@p.Titulo</h5>
+                            <p class="card-text small text-muted" style="height: 40px; overflow: hidden;">
+                                @p.Descricao
+                            </p>
+
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <span class="h5 text-primary mb-0 fw-bold">@p.Preco.ToString("C")</span>
+                                <a href="/produto/@p.Id" class="btn btn-sm btn-outline-primary">Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private List<CategoriaDto>? TodasCategorias;
+    private List<ProdutoDto>? ListaProdutos;
+    private ProdutoDto? ProdutoDestaque;
+    // Listas para os Frisos
+    private List<CategoriaDto> CategoriasNivel1 = new();
+    private List<CategoriaDto> CategoriasNivel2 = new();
+    private List<CategoriaDto> CategoriasNivel3 = new();
+
+    // Seleção atual
+    private int? CatNivel1Id;
+    private int? CatNivel2Id;
+    private int? CatNivel3Id;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            TodasCategorias = await CategoriasService.GetCategoriasAsync();
+
+            // Nível 1 são as que não têm Pai (CategoriaPaiId == null)
+            CategoriasNivel1 = TodasCategorias.Where(c => c.CategoriaPaiId == null).ToList();
+
+            // Carrega produtos iniciais
+            await CarregarProdutos(null);
+            ProdutoDestaque = await ProdutosService.GetProdutoDestaqueAsync();
+        }
+        catch
+        {
+            // Evita crash se a API falhar
+            TodasCategorias = new List<CategoriaDto>();
+            ListaProdutos = new List<ProdutoDto>();
+        }
+    }
+
+    private async Task SelecionarNivel1(int? id)
+    {
+        CatNivel1Id = id;
+        CatNivel2Id = null;
+        CatNivel3Id = null;
+        CategoriasNivel3.Clear();
+
+        if (id.HasValue)
+        {
+            CategoriasNivel2 = TodasCategorias!.Where(c => c.CategoriaPaiId == id).ToList();
+        }
+        else
+        {
+            CategoriasNivel2.Clear();
+        }
+
+        await CarregarProdutos(id);
+    }
+
+    private async Task SelecionarNivel2(int id)
+    {
+        CatNivel2Id = id;
+        CatNivel3Id = null;
+
+        CategoriasNivel3 = TodasCategorias!.Where(c => c.CategoriaPaiId == id).ToList();
+
+        await CarregarProdutos(id);
+    }
+
+    private async Task SelecionarNivel3(int id)
+    {
+        CatNivel3Id = id;
+        await CarregarProdutos(id);
+    }
+
+    private async Task CarregarProdutos(int? catId)
+    {
+        ListaProdutos = null; // Ativa o loading
+        StateHasChanged(); // Força atualização da UI
+        ListaProdutos = await ProdutosService.GetProdutosAsync(catId);
+    }
+}

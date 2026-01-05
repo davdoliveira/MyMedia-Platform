@@ -1,0 +1,87 @@
+﻿@page "/encomendas"
+@using TP.Shared.RCL.DTOs
+@using TP.Shared.RCL.Services
+@inject IEncomendasService EncomendasService
+@attribute [Microsoft.AspNetCore.Authorization.Authorize]
+
+<PageTitle>As Minhas Encomendas</PageTitle>
+
+<div class="container my-4">
+    <h2 class="mb-4">Histórico de Encomendas</h2>
+
+    @if (listaEncomendas == null)
+    {
+        <p>A carregar...</p>
+    }
+    else if (!listaEncomendas.Any())
+    {
+        <div class="alert alert-info">Ainda não fez nenhuma encomenda.</div>
+    }
+    else
+    {
+        <div class="accordion">
+            @foreach (var enc in listaEncomendas)
+            {
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button @(encomendaAbertaId == enc.Id ? "" : "collapsed")"
+                                type="button"
+                                @onclick="() => AlternarDetalhes(enc.Id)">
+
+                            <div class="d-flex w-100 justify-content-between me-3">
+                                <span><strong>#@enc.Id</strong> - @enc.Data.ToShortDateString()</span>
+
+                                <span class="badge bg-primary rounded-pill">@enc.Total.ToString("C")</span>
+                            </div>
+                        </button>
+                    </h2>
+
+                    <div class="accordion-collapse collapse @(encomendaAbertaId == enc.Id ? "show" : "")">
+                        <div class="accordion-body">
+                            <p><strong>Estado:</strong> @enc.Estado</p>
+                            <h6 class="border-bottom pb-2">Itens:</h6>
+
+                            <ul class="list-group list-group-flush">
+                                @foreach (var item in enc.Itens)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                        <div>
+                                            @item.Titulo
+                                            <div class="text-muted small">@item.Quantidade x @item.PrecoUnitario.ToString("C")</div>
+                                        </div>
+                                        <span class="fw-bold">@((item.Quantidade * item.PrecoUnitario).ToString("C"))</span>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private List<EncomendaDto>? listaEncomendas;
+
+    // Variável para guardar o ID da encomenda que está aberta (null = nenhuma)
+    private int? encomendaAbertaId = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        listaEncomendas = await EncomendasService.GetMinhasEncomendasAsync();
+    }
+
+    // Método para abrir/fechar
+    private void AlternarDetalhes(int id)
+    {
+        if (encomendaAbertaId == id)
+        {
+            encomendaAbertaId = null; // Se já estava aberta, fecha
+        }
+        else
+        {
+            encomendaAbertaId = id; // Abre a nova e fecha as outras
+        }
+    }
+}

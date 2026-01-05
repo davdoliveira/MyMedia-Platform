@@ -1,0 +1,181 @@
+﻿@page "/encomendas/detalhes/{Id:int}"
+@using Microsoft.EntityFrameworkCore
+@using TP.Backend.Data
+@using TP.Backend.Data.Entidades
+@inject ApplicationDbContext Context
+@inject NavigationManager Navigation
+@attribute [Microsoft.AspNetCore.Authorization.Authorize]
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>📦 Detalhe da Encomenda #@Id</h2>
+        <a href="/admin/encomendas" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+    </div>
+
+    @if (Encomenda == null)
+    {
+        <div class="alert alert-info">A carregar dados...</div>
+    }
+    else
+    {
+        @if (!string.IsNullOrEmpty(MensagemErro))
+        {
+            <div class="alert alert-danger mb-4">@MensagemErro</div>
+        }
+
+        <div class="row">
+            @* --- DADOS DA ENCOMENDA --- *@
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-light fw-bold">Informação Geral</div>
+                    <div class="card-body">
+                        <p><strong>Data:</strong> @Encomenda.DataEncomenda.ToString("g")</p>
+                        <p><strong>Cliente:</strong> @(Encomenda.Cliente?.UserName ?? "Desconhecido")</p>
+                        <p><strong>Total:</strong> <span class="text-success fw-bold fs-5">@Encomenda.Total.ToString("C")</span></p>
+                        <hr />
+                        <p>
+                            <strong>Estado Atual:</strong>
+                            <span class="badge @ObterClasseEstado(Encomenda.Estado)">@Encomenda.Estado</span>
+                        </p>
+                        <p><strong>Pagamento:</strong> @(Encomenda.EstaPaga ? "Pago" : "Pendente")</p>
+                    </div>
+                </div>
+
+                @* --- BOTÃO DE AÇÃO --- *@
+                @if (Encomenda.Estado == "Pendente")
+                {
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-success btn-lg py-3" @onclick="ExpedirEncomenda">
+                            <i class="bi bi-box-seam"></i> APROVAR & EXPEDIR
+                        </button>
+                        <small class="text-muted text-center">
+                            Ao clicar, o stock será descontado e a encomenda marcada como Enviada.
+                        </small>
+                    </div>
+                }
+            </div>
+
+            @* --- LISTA DE PRODUTOS --- *@
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light fw-bold">Produtos na Encomenda</div>
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th class="text-center">Qtd</th>
+                                    <th class="text-end">Preço Unit.</th>
+                                    <th class="text-end">Total</th>
+                                    <th class="text-center">Stock Atual</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Encomenda.Itens)
+                                {
+                                    <tr>
+                                        <td>@item.Produto.Titulo</td>
+                                        <td class="text-center fw-bold">@item.Quantidade</td>
+                                        <td class="text-end">@item.PrecoUnitario.ToString("C")</td>
+                                        <td class="text-end">@((item.PrecoUnitario * item.Quantidade).ToString("C"))</td>
+                                        <td class="text-center">
+                                            @if (Encomenda.Estado == "Pendente")
+                                            {
+                                                @if (item.Produto.Stock < item.Quantidade)
+                                                {
+                                                    <span class="badge bg-danger">@item.Produto.Stock (Insuficiente!)</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-light text-dark border">@item.Produto.Stock</span>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">-</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private Encomenda? Encomenda;
+    private string MensagemErro = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CarregarDados();
+    }
+
+    private async Task CarregarDados()
+    {
+        Encomenda = await Context.Encomendas
+            .Include(e => e.Cliente)
+            .Include(e => e.Itens)
+                .ThenInclude(i => i.Produto) // Essencial para ver o Stock
+            .FirstOrDefaultAsync(e => e.Id == Id);
+    }
+
+    private string ObterClasseEstado(string estado) => estado switch
+    {
+        "Pendente" => "bg-warning text-dark",
+        "Expedida" => "bg-success",
+        "Cancelada" => "bg-danger",
+        _ => "bg-secondary"
+    };
+
+    private async Task ExpedirEncomenda()
+    {
+        if (Encomenda == null) return;
+        MensagemErro = "";
+
+        // 1. RE-VALIDAÇÃO DE STOCK (Segurança)
+        foreach (var item in Encomenda.Itens)
+        {
+            if (item.Produto.Stock < item.Quantidade)
+            {
+                MensagemErro = $"ERRO CRÍTICO: O produto '{item.Produto.Titulo}' não tem stock suficiente ({item.Produto.Stock}). Reponha stock antes de expedir.";
+                return;
+            }
+        }
+
+        // 2. PROCESSAR BAIXA DE STOCK E INATIVAÇÃO
+        foreach (var item in Encomenda.Itens)
+        {
+            item.Produto.Stock -= item.Quantidade;
+
+            // Se stock bater no zero, inativar produto
+            if (item.Produto.Stock <= 0)
+            {
+                item.Produto.Stock = 0;
+                item.Produto.Estado = ProdutoEstado.Inativo;
+            }
+        }
+
+        // 3. ATUALIZAR ESTADO
+        Encomenda.Estado = "Expedida";
+        Encomenda.EstaPaga = true;
+
+        try
+        {
+            await Context.SaveChangesAsync();
+            Navigation.NavigateTo("/admin/encomendas"); // Volta à lista com sucesso
+        }
+        catch (Exception ex)
+        {
+            MensagemErro = "Erro ao gravar na base de dados: " + ex.Message;
+        }
+    }
+}

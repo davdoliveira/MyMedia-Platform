@@ -1,0 +1,667 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.admin.gestao\\components\\pages\\encomendas\\detalhes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|solutionrelative:tp.admin.gestao\\components\\pages\\encomendas\\detalhes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.admin.gestao\\components\\pages\\encomendas\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|solutionrelative:tp.admin.gestao\\components\\pages\\encomendas\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7EC97A8-27B3-41AE-81B5-274E9C544577}|TP.Backend.API\\TP.Backend.API.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.backend.api\\controllers\\encomendascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7EC97A8-27B3-41AE-81B5-274E9C544577}|TP.Backend.API\\TP.Backend.API.csproj|solutionrelative:tp.backend.api\\controllers\\encomendascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Migrations\\20260102192516_AdicionadoEstadoEncomenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TP.Backend.Data\\Migrations\\20260102192516_AdicionadoEstadoEncomenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{026014B9-0BF7-432C-A48F-2423608FD96B}|TP.Backend.Data\\TP.Backend.Data.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.backend.data\\entidades\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{026014B9-0BF7-432C-A48F-2423608FD96B}|TP.Backend.Data\\TP.Backend.Data.csproj|solutionrelative:tp.backend.data\\entidades\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Migrations\\20260102192221_AdicionadoEstadoEncomenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TP.Backend.Data\\Migrations\\20260102192221_AdicionadoEstadoEncomenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{026014B9-0BF7-432C-A48F-2423608FD96B}|TP.Backend.Data\\TP.Backend.Data.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.backend.data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{026014B9-0BF7-432C-A48F-2423608FD96B}|TP.Backend.Data\\TP.Backend.Data.csproj|solutionrelative:tp.backend.data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.shared.rcl\\dtos\\encomendadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|solutionrelative:tp.shared.rcl\\dtos\\encomendadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{026014B9-0BF7-432C-A48F-2423608FD96B}|TP.Backend.Data\\TP.Backend.Data.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.backend.data\\entidades\\encomenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{026014B9-0BF7-432C-A48F-2423608FD96B}|TP.Backend.Data\\TP.Backend.Data.csproj|solutionrelative:tp.backend.data\\entidades\\encomenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.admin.gestao\\components\\pages\\produtos\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|solutionrelative:tp.admin.gestao\\components\\pages\\produtos\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.admin.gestao\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|solutionrelative:tp.admin.gestao\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.admin.gestao\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|solutionrelative:tp.admin.gestao\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.shared.rcl\\pages\\catalogo.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|solutionrelative:tp.shared.rcl\\pages\\catalogo.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7EC97A8-27B3-41AE-81B5-274E9C544577}|TP.Backend.API\\TP.Backend.API.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.backend.api\\controllers\\produtoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7EC97A8-27B3-41AE-81B5-274E9C544577}|TP.Backend.API\\TP.Backend.API.csproj|solutionrelative:tp.backend.api\\controllers\\produtoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.306\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.References.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.shared.rcl\\services\\produtosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|solutionrelative:tp.shared.rcl\\services\\produtosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.shared.rcl\\wwwroot\\background.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|solutionrelative:tp.shared.rcl\\wwwroot\\background.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.shared.rcl\\pages\\fornecedor\\editarproduto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|solutionrelative:tp.shared.rcl\\pages\\fornecedor\\editarproduto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.shared.rcl\\services\\iprodutosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|solutionrelative:tp.shared.rcl\\services\\iprodutosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.shared.rcl\\pages\\fornecedor\\meusprodutos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|solutionrelative:tp.shared.rcl\\pages\\fornecedor\\meusprodutos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.admin.gestao\\components\\pages\\produtos\\criar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|solutionrelative:tp.admin.gestao\\components\\pages\\produtos\\criar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{026014B9-0BF7-432C-A48F-2423608FD96B}|TP.Backend.Data\\TP.Backend.Data.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.backend.data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{026014B9-0BF7-432C-A48F-2423608FD96B}|TP.Backend.Data\\TP.Backend.Data.csproj|solutionrelative:tp.backend.data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E511D3F4-28AB-4D34-9087-4C11A5235238}|TP.Frontend.Mobile\\TP.Frontend.Mobile.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.frontend.mobile\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E511D3F4-28AB-4D34-9087-4C11A5235238}|TP.Frontend.Mobile\\TP.Frontend.Mobile.csproj|solutionrelative:tp.frontend.mobile\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7EC97A8-27B3-41AE-81B5-274E9C544577}|TP.Backend.API\\TP.Backend.API.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.backend.api\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7EC97A8-27B3-41AE-81B5-274E9C544577}|TP.Backend.API\\TP.Backend.API.csproj|solutionrelative:tp.backend.api\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7EC97A8-27B3-41AE-81B5-274E9C544577}|TP.Backend.API\\TP.Backend.API.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.backend.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7EC97A8-27B3-41AE-81B5-274E9C544577}|TP.Backend.API\\TP.Backend.API.csproj|solutionrelative:tp.backend.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.shared.rcl\\dtos\\categoriadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|solutionrelative:tp.shared.rcl\\dtos\\categoriadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2066ACB8-4300-4A08-9739-96E21C59EC1B}|TP.Frontend\\TP.Frontend.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.frontend\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2066ACB8-4300-4A08-9739-96E21C59EC1B}|TP.Frontend\\TP.Frontend.csproj|solutionrelative:tp.frontend\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2066ACB8-4300-4A08-9739-96E21C59EC1B}|TP.Frontend\\TP.Frontend.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.frontend\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{2066ACB8-4300-4A08-9739-96E21C59EC1B}|TP.Frontend\\TP.Frontend.csproj|solutionrelative:tp.frontend\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E511D3F4-28AB-4D34-9087-4C11A5235238}|TP.Frontend.Mobile\\TP.Frontend.Mobile.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.frontend.mobile\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E511D3F4-28AB-4D34-9087-4C11A5235238}|TP.Frontend.Mobile\\TP.Frontend.Mobile.csproj|solutionrelative:tp.frontend.mobile\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.shared.rcl\\pages\\fornecedor\\criarproduto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{308B00D3-4EC4-4356-A3CE-F944C7658EB6}|TP.Shared.RCL\\TP.Shared.RCL.csproj|solutionrelative:tp.shared.rcl\\pages\\fornecedor\\criarproduto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\david\\.nuget\\packages\\microsoft.windowsappsdk\\1.5.240802000\\buildTransitive\\Microsoft.UI.Xaml.Markup.Compiler.interop.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{026014B9-0BF7-432C-A48F-2423608FD96B}|TP.Backend.Data\\TP.Backend.Data.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.backend.data\\migrations\\20251228162025_adicionarmargemlucro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{026014B9-0BF7-432C-A48F-2423608FD96B}|TP.Backend.Data\\TP.Backend.Data.csproj|solutionrelative:tp.backend.data\\migrations\\20251228162025_adicionarmargemlucro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.admin.gestao\\components\\pages\\produtos\\editar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{43885D9F-CF36-4CA0-A3E0-4741AC2993A3}|TP.Admin.Gestao\\TP.Admin.Gestao.csproj|solutionrelative:tp.admin.gestao\\components\\pages\\produtos\\editar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E511D3F4-28AB-4D34-9087-4C11A5235238}|TP.Frontend.Mobile\\TP.Frontend.Mobile.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.frontend.mobile\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E511D3F4-28AB-4D34-9087-4C11A5235238}|TP.Frontend.Mobile\\TP.Frontend.Mobile.csproj|solutionrelative:tp.frontend.mobile\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2066ACB8-4300-4A08-9739-96E21C59EC1B}|TP.Frontend\\TP.Frontend.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.frontend\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2066ACB8-4300-4A08-9739-96E21C59EC1B}|TP.Frontend\\TP.Frontend.csproj|solutionrelative:tp.frontend\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.306\\Sdks\\Microsoft.NET.Sdk.Razor\\Sdk\\Sdk.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\uni_programas\\vs 2022\\programa\\MSBuild\\Current\\Bin\\Roslyn\\Microsoft.CSharp.Core.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2066ACB8-4300-4A08-9739-96E21C59EC1B}|TP.Frontend\\TP.Frontend.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.frontend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2066ACB8-4300-4A08-9739-96E21C59EC1B}|TP.Frontend\\TP.Frontend.csproj|solutionrelative:tp.frontend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2066ACB8-4300-4A08-9739-96E21C59EC1B}|TP.Frontend\\TP.Frontend.csproj|d:\\aulas-3ano\\1semestre\\pweb\\nova tentativa 2812\\produtodestaque\\tp_pweb_usar_github\\tp.frontend\\tp.frontend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2066ACB8-4300-4A08-9739-96E21C59EC1B}|TP.Frontend\\TP.Frontend.csproj|solutionrelative:tp.frontend\\tp.frontend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Encomendas\\Index.razor",
+              "RelativeDocumentMoniker": "TP.Admin.Gestao\\Components\\Pages\\Encomendas\\Index.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Encomendas\\Index.razor",
+              "RelativeToolTip": "TP.Admin.Gestao\\Components\\Pages\\Encomendas\\Index.razor",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAMwEAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-02T19:40:18.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Detalhes.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Encomendas\\Detalhes.razor",
+              "RelativeDocumentMoniker": "TP.Admin.Gestao\\Components\\Pages\\Encomendas\\Detalhes.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Encomendas\\Detalhes.razor",
+              "RelativeToolTip": "TP.Admin.Gestao\\Components\\Pages\\Encomendas\\Detalhes.razor",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAQwLQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-02T19:33:15.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "20260102192516_AdicionadoEstadoEncomenda.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Migrations\\20260102192516_AdicionadoEstadoEncomenda.cs",
+              "RelativeDocumentMoniker": "TP.Backend.Data\\Migrations\\20260102192516_AdicionadoEstadoEncomenda.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Migrations\\20260102192516_AdicionadoEstadoEncomenda.cs",
+              "RelativeToolTip": "TP.Backend.Data\\Migrations\\20260102192516_AdicionadoEstadoEncomenda.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T19:25:16.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EncomendasController.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.API\\Controllers\\EncomendasController.cs",
+              "RelativeDocumentMoniker": "TP.Backend.API\\Controllers\\EncomendasController.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.API\\Controllers\\EncomendasController.cs",
+              "RelativeToolTip": "TP.Backend.API\\Controllers\\EncomendasController.cs",
+              "ViewState": "AgIAAJYAAAAAAAAAAAASwJIAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T18:52:29.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "20260102192221_AdicionadoEstadoEncomenda.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Migrations\\20260102192221_AdicionadoEstadoEncomenda.cs",
+              "RelativeDocumentMoniker": "TP.Backend.Data\\Migrations\\20260102192221_AdicionadoEstadoEncomenda.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Migrations\\20260102192221_AdicionadoEstadoEncomenda.cs",
+              "RelativeToolTip": "TP.Backend.Data\\Migrations\\20260102192221_AdicionadoEstadoEncomenda.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T19:22:21.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "TP.Backend.Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "TP.Backend.Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T19:20:59.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Encomenda.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Entidades\\Encomenda.cs",
+              "RelativeDocumentMoniker": "TP.Backend.Data\\Entidades\\Encomenda.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Entidades\\Encomenda.cs",
+              "RelativeToolTip": "TP.Backend.Data\\Entidades\\Encomenda.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T19:16:26.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Produto.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Entidades\\Produto.cs",
+              "RelativeDocumentMoniker": "TP.Backend.Data\\Entidades\\Produto.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Entidades\\Produto.cs",
+              "RelativeToolTip": "TP.Backend.Data\\Entidades\\Produto.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAcwBoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T15:58:30.731Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "EncomendaDto.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\DTOs\\EncomendaDto.cs",
+              "RelativeDocumentMoniker": "TP.Shared.RCL\\DTOs\\EncomendaDto.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\DTOs\\EncomendaDto.cs",
+              "RelativeToolTip": "TP.Shared.RCL\\DTOs\\EncomendaDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAwwBUAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T18:56:21.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Produtos\\Index.razor",
+              "RelativeDocumentMoniker": "TP.Admin.Gestao\\Components\\Pages\\Produtos\\Index.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Produtos\\Index.razor",
+              "RelativeToolTip": "TP.Admin.Gestao\\Components\\Pages\\Produtos\\Index.razor",
+              "ViewState": "AgIAABMBAAAAAAAAAAAwwC0BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-02T18:35:04.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Home.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "TP.Admin.Gestao\\Components\\Pages\\Home.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "TP.Admin.Gestao\\Components\\Pages\\Home.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-02T18:29:46.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CategoriasController.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.API\\Controllers\\CategoriasController.cs",
+              "RelativeDocumentMoniker": "TP.Backend.API\\Controllers\\CategoriasController.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.API\\Controllers\\CategoriasController.cs",
+              "RelativeToolTip": "TP.Backend.API\\Controllers\\CategoriasController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwDYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T16:47:34.6Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ProdutosController.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.API\\Controllers\\ProdutosController.cs",
+              "RelativeDocumentMoniker": "TP.Backend.API\\Controllers\\ProdutosController.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.API\\Controllers\\ProdutosController.cs",
+              "RelativeToolTip": "TP.Backend.API\\Controllers\\ProdutosController.cs",
+              "ViewState": "AgIAAA4BAAAAAAAAAAAwwBUBAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T15:59:57.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Catalogo.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Pages\\Catalogo.razor",
+              "RelativeDocumentMoniker": "TP.Shared.RCL\\Pages\\Catalogo.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Pages\\Catalogo.razor",
+              "RelativeToolTip": "TP.Shared.RCL\\Pages\\Catalogo.razor",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAcwGAAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-28T20:32:04.066Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IProdutosService.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Services\\IProdutosService.cs",
+              "RelativeDocumentMoniker": "TP.Shared.RCL\\Services\\IProdutosService.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Services\\IProdutosService.cs",
+              "RelativeToolTip": "TP.Shared.RCL\\Services\\IProdutosService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T16:41:16.696Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\SeedData.cs",
+              "RelativeDocumentMoniker": "TP.Backend.Data\\SeedData.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\SeedData.cs",
+              "RelativeToolTip": "TP.Backend.Data\\SeedData.cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAowHQAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T20:53:22.739Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "CategoriaDto.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\DTOs\\CategoriaDto.cs",
+              "RelativeDocumentMoniker": "TP.Shared.RCL\\DTOs\\CategoriaDto.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\DTOs\\CategoriaDto.cs",
+              "RelativeToolTip": "TP.Shared.RCL\\DTOs\\CategoriaDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T20:09:53.12Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Home.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "TP.Frontend\\Components\\Pages\\Home.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "TP.Frontend\\Components\\Pages\\Home.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-28T20:11:00.565Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.API\\Program.cs",
+              "RelativeDocumentMoniker": "TP.Backend.API\\Program.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.API\\Program.cs",
+              "RelativeToolTip": "TP.Backend.API\\Program.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAQwF4AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T20:55:11.422Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "app.css",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend\\wwwroot\\app.css",
+              "RelativeDocumentMoniker": "TP.Frontend\\wwwroot\\app.css",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend\\wwwroot\\app.css",
+              "RelativeToolTip": "TP.Frontend\\wwwroot\\app.css",
+              "ViewState": "AgIAADoAAAAAAAAAAAAAwF8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-12-28T19:57:48.913Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "TP.Admin.Gestao\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "TP.Admin.Gestao\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-27T22:00:26.041Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Microsoft.NET.Sdk.StaticWebAssets.References.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.306\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.References.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.306\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.References.targets",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAswIIAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-12-28T16:09:35.188Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "background.png",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\wwwroot\\background.png",
+              "RelativeDocumentMoniker": "TP.Shared.RCL\\wwwroot\\background.png",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\wwwroot\\background.png",
+              "RelativeToolTip": "TP.Shared.RCL\\wwwroot\\background.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-01-02T17:26:43.628Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ProdutosService.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Services\\ProdutosService.cs",
+              "RelativeDocumentMoniker": "TP.Shared.RCL\\Services\\ProdutosService.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Services\\ProdutosService.cs",
+              "RelativeToolTip": "TP.Shared.RCL\\Services\\ProdutosService.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAowIwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T16:08:26.24Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "EditarProduto.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Pages\\Fornecedor\\EditarProduto.razor",
+              "RelativeDocumentMoniker": "TP.Shared.RCL\\Pages\\Fornecedor\\EditarProduto.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Pages\\Fornecedor\\EditarProduto.razor",
+              "RelativeToolTip": "TP.Shared.RCL\\Pages\\Fornecedor\\EditarProduto.razor",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAgwJgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-02T17:22:27.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "MeusProdutos.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Pages\\Fornecedor\\MeusProdutos.razor",
+              "RelativeDocumentMoniker": "TP.Shared.RCL\\Pages\\Fornecedor\\MeusProdutos.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Pages\\Fornecedor\\MeusProdutos.razor",
+              "RelativeToolTip": "TP.Shared.RCL\\Pages\\Fornecedor\\MeusProdutos.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-02T17:19:44.792Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Criar.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Produtos\\Criar.razor",
+              "RelativeDocumentMoniker": "TP.Admin.Gestao\\Components\\Pages\\Produtos\\Criar.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Produtos\\Criar.razor",
+              "RelativeToolTip": "TP.Admin.Gestao\\Components\\Pages\\Produtos\\Criar.razor",
+              "ViewState": "AgIAANkAAAAAAAAAAAAwwPMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-28T16:31:55.927Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Home.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend.Mobile\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "TP.Frontend.Mobile\\Components\\Pages\\Home.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend.Mobile\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "TP.Frontend.Mobile\\Components\\Pages\\Home.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-28T21:23:45.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend.Mobile\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "TP.Frontend.Mobile\\MauiProgram.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend.Mobile\\MauiProgram.cs",
+              "RelativeToolTip": "TP.Frontend.Mobile\\MauiProgram.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAFcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T18:40:21.237Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Microsoft.UI.Xaml.Markup.Compiler.interop.targets",
+              "DocumentMoniker": "C:\\Users\\david\\.nuget\\packages\\microsoft.windowsappsdk\\1.5.240802000\\buildTransitive\\Microsoft.UI.Xaml.Markup.Compiler.interop.targets",
+              "ToolTip": "C:\\Users\\david\\.nuget\\packages\\microsoft.windowsappsdk\\1.5.240802000\\buildTransitive\\Microsoft.UI.Xaml.Markup.Compiler.interop.targets",
+              "ViewState": "AgIAAIACAAAAAAAAAADwv5MCAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-12-28T18:28:58.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "CriarProduto.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Pages\\Fornecedor\\CriarProduto.razor",
+              "RelativeDocumentMoniker": "TP.Shared.RCL\\Pages\\Fornecedor\\CriarProduto.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Shared.RCL\\Pages\\Fornecedor\\CriarProduto.razor",
+              "RelativeToolTip": "TP.Shared.RCL\\Pages\\Fornecedor\\CriarProduto.razor",
+              "ViewState": "AgIAAIUAAAAAAAAAAAAYwJ0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-28T16:42:20.079Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "20251228162025_AdicionarMargemLucro.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Migrations\\20251228162025_AdicionarMargemLucro.cs",
+              "RelativeDocumentMoniker": "TP.Backend.Data\\Migrations\\20251228162025_AdicionarMargemLucro.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Backend.Data\\Migrations\\20251228162025_AdicionarMargemLucro.cs",
+              "RelativeToolTip": "TP.Backend.Data\\Migrations\\20251228162025_AdicionarMargemLucro.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-28T16:20:26.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Editar.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Produtos\\Editar.razor",
+              "RelativeDocumentMoniker": "TP.Admin.Gestao\\Components\\Pages\\Produtos\\Editar.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Admin.Gestao\\Components\\Pages\\Produtos\\Editar.razor",
+              "RelativeToolTip": "TP.Admin.Gestao\\Components\\Pages\\Produtos\\Editar.razor",
+              "ViewState": "AgIAANUAAAAAAAAAAAAIwPkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-28T16:02:31.791Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend.Mobile\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "TP.Frontend.Mobile\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend.Mobile\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "TP.Frontend.Mobile\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACAAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-27T22:04:04.711Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "TP.Frontend\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "TP.Frontend\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwA4AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-27T22:03:30.182Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Sdk.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.306\\Sdks\\Microsoft.NET.Sdk.Razor\\Sdk\\Sdk.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.306\\Sdks\\Microsoft.NET.Sdk.Razor\\Sdk\\Sdk.targets",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-12-27T20:25:27.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Microsoft.CSharp.Core.targets",
+              "DocumentMoniker": "D:\\uni_programas\\vs 2022\\programa\\MSBuild\\Current\\Bin\\Roslyn\\Microsoft.CSharp.Core.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\uni_programas\\vs 2022\\programa\\MSBuild\\Current\\Bin\\Roslyn\\Microsoft.CSharp.Core.targets",
+              "ToolTip": "D:\\uni_programas\\vs 2022\\programa\\MSBuild\\Current\\Bin\\Roslyn\\Microsoft.CSharp.Core.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\uni_programas\\vs 2022\\programa\\MSBuild\\Current\\Bin\\Roslyn\\Microsoft.CSharp.Core.targets",
+              "ViewState": "AgIAAEQAAAAAAAAAAAD4v1MAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-12-27T20:25:18.348Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend\\Program.cs",
+              "RelativeDocumentMoniker": "TP.Frontend\\Program.cs",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend\\Program.cs",
+              "RelativeToolTip": "TP.Frontend\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T20:21:19.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "TP.Frontend.csproj",
+              "DocumentMoniker": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend\\TP.Frontend.csproj",
+              "RelativeDocumentMoniker": "TP.Frontend\\TP.Frontend.csproj",
+              "ToolTip": "D:\\AULAS-3ano\\1semestre\\PWEB\\nova tentativa 2812\\produtodestaque\\TP_Pweb_usar_github\\TP.Frontend\\TP.Frontend.csproj",
+              "RelativeToolTip": "TP.Frontend\\TP.Frontend.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-27T20:20:44.105Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1004,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

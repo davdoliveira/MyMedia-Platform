@@ -1,0 +1,153 @@
+﻿@page "/fornecedor/produtos/editar/{Id:int}"
+@using TP.Shared.RCL.DTOs
+@using TP.Shared.RCL.Services
+@inject IProdutosService ProdutosService
+@inject ICategoriasService CategoriasService
+@inject NavigationManager Navigation
+@attribute [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Fornecedor")]
+
+<div class="container my-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0">✏️ Editar Produto</h4>
+        </div>
+        <div class="card-body">
+
+            @if (Produto == null)
+            {
+                <div class="text-center p-3">
+                    <div class="spinner-border text-warning"></div>
+                    <p>A carregar dados do produto...</p>
+                </div>
+            }
+            else
+            {
+                @if (!string.IsNullOrEmpty(MensagemErro))
+                {
+                    <div class="alert alert-danger">@MensagemErro</div>
+                }
+
+                <EditForm Model="Produto" OnValidSubmit="Atualizar">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary class="text-danger" />
+
+                    <div class="row">
+                        @* --- TÍTULO E DESCRIÇÃO --- *@
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Título</label>
+                            <InputText @bind-Value="Produto.Titulo" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <InputTextArea @bind-Value="Produto.Descricao" class="form-control" rows="3" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        @* --- PREÇO E STOCK --- *@
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Preço Base (€)</label>
+                            <InputNumber @bind-Value="Produto.Preco" class="form-control" />
+                            <div class="form-text">Se alterares o preço, o Admin terá de aprovar novamente.</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Stock</label>
+                            <InputNumber @bind-Value="Produto.Stock" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        @* --- CATEGORIA E MODO ENTREGA --- *@
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Categoria</label>
+                            <InputSelect @bind-Value="Produto.CategoriaId" class="form-select">
+                                <option value="">-- Seleciona --</option>
+                                @foreach (var cat in ListaCategorias)
+                                {
+                                    <option value="@cat.Id">@cat.Nome</option>
+                                }
+                            </InputSelect>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Modo de Entrega</label>
+                            <InputSelect @bind-Value="Produto.ModoEntregaId" class="form-select">
+                                <option value="">-- Seleciona --</option>
+                                @foreach (var modo in ListaModos)
+                                {
+                                    <option value="@modo.Id">@modo.Nome</option>
+                                }
+                            </InputSelect>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Imagem URL</label>
+                        <InputText @bind-Value="Produto.ImagemUrl" class="form-control" />
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2 mt-4">
+                        <a href="/fornecedor/produtos" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="bi bi-save"></i> Guardar Alterações
+                        </button>
+                    </div>
+                </EditForm>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private ProdutoDto? Produto;
+    private List<CategoriaDto> ListaCategorias = new();
+    private List<ModoEntregaDto> ListaModos = new();
+    private string MensagemErro = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // 1. Carregar Listas
+            var taskCats = CategoriasService.GetCategoriasAsync();
+            var taskModos = ProdutosService.GetModosEntregaAsync();
+
+            // 2. Carregar Produto Específico
+            var taskProd = ProdutosService.GetProdutoByIdAsync(Id);
+
+            await Task.WhenAll(taskCats, taskModos, taskProd);
+
+            ListaCategorias = taskCats.Result;
+            ListaModos = taskModos.Result;
+            Produto = taskProd.Result;
+
+            if (Produto == null)
+            {
+                MensagemErro = "Produto não encontrado.";
+            }
+        }
+        catch (Exception ex)
+        {
+            MensagemErro = "Erro ao carregar dados: " + ex.Message;
+        }
+    }
+
+    private async Task Atualizar()
+    {
+        if (Produto == null) return;
+
+        var sucesso = await ProdutosService.AtualizarProdutoAsync(Id, Produto);
+
+        if (sucesso)
+        {
+            Navigation.NavigateTo("/fornecedor/produtos");
+        }
+        else
+        {
+            MensagemErro = "Erro ao atualizar. Verifica os dados.";
+        }
+    }
+}

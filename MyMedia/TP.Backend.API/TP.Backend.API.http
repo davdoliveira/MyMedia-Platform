@@ -1,0 +1,6 @@
+@TP.Backend.API_HostAddress = http://localhost:5113
+
+GET {{TP.Backend.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

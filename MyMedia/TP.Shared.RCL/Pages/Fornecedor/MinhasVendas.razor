@@ -1,0 +1,74 @@
+﻿@page "/fornecedor/vendas"
+@using TP.Shared.RCL.DTOs
+@using TP.Shared.RCL.Services
+@inject IEncomendasService EncomendasService
+@attribute [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Fornecedor")]
+
+<PageTitle>Minhas Vendas</PageTitle>
+
+<div class="container my-4">
+    <h3>Relatório de Vendas</h3>
+
+    @if (vendas == null)
+    {
+        <p>A carregar dados...</p>
+    }
+    else if (!vendas.Any())
+    {
+        <div class="alert alert-info">Ainda não vendeu nenhum produto.</div>
+    }
+    else
+    {
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title text-success mb-3">
+                    Total Ganho: @vendas.Sum(v => v.ValorTotal).ToString("C")
+                </h5>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Data</th>
+                                <th>Produto</th>
+                                <th>Qtd</th>
+                                <th>Valor</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var venda in vendas)
+                            {
+                                <tr>
+                                    <td>@venda.Data.ToShortDateString()</td>
+                                    <td class="fw-bold">@venda.ProdutoNome</td>
+                                    <td>@venda.Quantidade</td>
+                                    <td>@venda.ValorTotal.ToString("C")</td>
+                                    <td>
+                                        @if (venda.EstadoEncomenda == "Paga")
+                                        {
+                                            <span class="badge bg-success">Confirmada</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-warning text-dark">Aguardar Pagamento</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private List<VendaDto>? vendas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        vendas = await EncomendasService.GetVendasFornecedorAsync();
+    }
+}

@@ -1,0 +1,38 @@
+﻿@inherits LayoutComponentBase
+@using TP.Shared.RCL.Services
+@using Microsoft.AspNetCore.Components.Authorization
+@inject IAuthService AuthService
+@inject NavigationManager Navigation
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <AuthorizeView>
+                <Authorized>
+                    <span class="me-3">Olá, <strong>@context.User.Identity?.Name</strong>!</span>
+                    <button class="btn btn-link" @onclick="Logout">Sair</button>
+                </Authorized>
+                <NotAuthorized>
+                    <a href="/login" class="me-3">Login</a>
+                    <a href="/registar">Registar</a>
+                </NotAuthorized>
+            </AuthorizeView>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private async Task Logout()
+    {
+        await AuthService.LogoutAsync();
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+}

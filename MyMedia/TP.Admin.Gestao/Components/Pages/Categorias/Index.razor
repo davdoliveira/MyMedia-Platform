@@ -1,0 +1,64 @@
+﻿@page "/categorias"
+@using Microsoft.EntityFrameworkCore
+@using TP.Backend.Data
+@using TP.Backend.Data.Entidades
+@inject ApplicationDbContext Context
+
+<PageTitle>Categorias</PageTitle>
+
+<h1>Gestão de Categorias</h1>
+
+<div class="mb-3">
+    <a href="/categorias/criar" class="btn btn-primary">Nova Categoria</a>
+</div>
+
+@if (ListaCategorias == null)
+{
+    <p><em>A carregar dados...</em></p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ListaCategorias)
+            {
+                <tr>
+                    <td>@item.Nome</td>
+                    <td>@item.Descricao</td>
+                    <td>
+                        <a href="/categorias/editar/@item.Id" class="btn btn-sm btn-warning">Editar</a>
+                        <button class="btn btn-sm btn-danger" @onclick="() => ApagarCategoria(item)">Apagar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Categoria>? ListaCategorias;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Vai buscar todas as categorias à BD para mostrar na tabela
+        ListaCategorias = await Context.Categorias.ToListAsync();
+    }
+    private async Task ApagarCategoria(Categoria categoria)
+    {
+        // Pergunta de confirmação simples (em JS seria melhor, mas para já serve)
+        // Nota: Num cenário real usarias um Dialog/Modal, aqui apaga direto para simplificar
+
+        Context.Categorias.Remove(categoria);
+        await Context.SaveChangesAsync();
+
+        // Atualiza a lista visualmente removendo o item apagado
+        ListaCategorias.Remove(categoria);
+    }
+}

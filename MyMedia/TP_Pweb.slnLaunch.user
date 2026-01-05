@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "Novo Perfil",
+    "Projects": [
+      {
+        "Path": "TP.Backend.API\\TP.Backend.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "TP.Admin.Gestao\\TP.Admin.Gestao.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "TP.Frontend\\TP.Frontend.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

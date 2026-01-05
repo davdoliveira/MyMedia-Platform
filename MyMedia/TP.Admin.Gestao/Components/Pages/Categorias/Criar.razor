@@ -1,0 +1,47 @@
+﻿@page "/categorias/criar"
+@using Microsoft.EntityFrameworkCore
+@using TP.Backend.Data
+@using TP.Backend.Data.Entidades
+@inject ApplicationDbContext Context
+@inject NavigationManager Navigation
+<h3>Nova Categoria</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <EditForm Model="Categoria" OnValidSubmit="GuardarCategoria" FormName="FormCategoria">
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <InputText class="form-control" @bind-Value="Categoria.Nome" />
+                <ValidationMessage For="() => Categoria.Nome" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Descrição</label>
+                <InputTextArea class="form-control" @bind-Value="Categoria.Descricao" />
+            </div>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="/categorias" class="btn btn-secondary">Cancelar</a>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    public Categoria Categoria { get; set; } = new();
+
+    private async Task GuardarCategoria()
+    {
+        // 1. Adicionar ao Contexto
+        Context.Categorias.Add(Categoria);
+
+        // 2. Guardar na Base de Dados
+        await Context.SaveChangesAsync();
+
+        // 3. Voltar à lista
+        Navigation.NavigateTo("/categorias");
+    }
+}
