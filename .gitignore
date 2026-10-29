@@ -1,0 +1,67 @@
+# Build and Visual Studio folders
+[Bb]in/
+[Oo]bj/
+.vs/
+.vscode/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# ASP.NET Core / .NET project files
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Local databases and data files
+*.mdf
+*.ldf
+*.ndf
+*.sqlite
+*.db
+*.db-shm
+*.db-wal
+
+# Publish output
+publish/
+
+# Logs
+*.log
+
+# Node / front-end caches (if applicable)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Resharper / JetBrains
+_ReSharper.Caches/
+*.DotSettings.user
+
+# Test results
+TestResults/
+
+# Visual Studio generated files
+*.cache
+*.pdb
+*.pidb
+*.svclog
+
+# User-specific launch settings (optional)
+*.launch.json
