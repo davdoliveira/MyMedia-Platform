@@ -1,3 +1,8 @@
+
+
+https://github.com/user-attachments/assets/44ed1fe4-4f82-43fd-a091-ce2813fccad4
+
+<img width="724" height="905" alt="musicpage" src="https://github.com/user-attachments/assets/10fb7cb5-eae3-4ecf-9470-ce9d05bdf082" />
 # MyMedia - E-Commerce Platform
 
 Uma plataforma completa de comércio eletrónico com arquitetura de micro-serviços (Frontend, Backoffice e API RESTful), desenvolvida como projeto final em .NET 8.
