@@ -1,25 +1,6 @@
 # MyMedia - E-Commerce Platform
 
-Uma plataforma completa de comércio eletrónico com arquitetura de micro-serviços (Frontend, Backoffice e API RESTful), desenvolvida como projeto final em .NET 8.
-
-## Tecnologias Utilizadas
-* **Backend:** C#, .NET 8 Web API, Entity Framework Core (Code-First), LINQ
-* **Frontend / Backoffice:** Blazor (WebAssembly/Server), Bootstrap 5
-* **Base de Dados:** SQL Server
-* **Segurança:** ASP.NET Core Identity, JWT (JSON Web Tokens), Autenticação baseada em Roles
-
-## Funcionalidades Principais
-O sistema suporta três perfis de utilizador distintos:
-* **Administrador:** Gestão de utilizadores, aprovação de produtos, definição de margens de lucro, gestão de categorias e expedição de encomendas (lógica de redução de stock).
-* **Fornecedor:** Submissão de produtos para aprovação (estado Pendente -> Ativo), definição de preço base e visualização do catálogo próprio.
-* **Cliente:** Navegação no catálogo, pesquisa hierárquica por categorias, gestão de carrinho de compras e checkout.
-
-## Base de Dados
-A base de dados foi modelada em SQL Server.
-
-# MyMedia - E-Commerce Platform
-
-Uma plataforma completa e distribuída de comércio eletrónico desenvolvida em .NET 8. Este projeto implementa uma arquitetura orientada a serviços, separando a lógica de negócio (API RESTful), o painel de administração (Backoffice) e a loja de clientes (Frontend / Mobile).
+Plataforma completa e distribuída de comércio eletrónico desenvolvida em .NET 8. Este projeto implementa uma arquitetura orientada a serviços, separando a lógica de negócio (API RESTful), o painel de administração (Backoffice) e a loja de clientes (Frontend / Mobile).
 
 O sistema foi desenhado para suportar um modelo de negócio B2B2C, onde múltiplos fornecedores podem submeter produtos para aprovação e comercialização através da plataforma.
 
