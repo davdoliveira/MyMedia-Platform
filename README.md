@@ -15,7 +15,15 @@ O sistema suporta três perfis de utilizador distintos:
 * **Cliente:** Navegação no catálogo, pesquisa hierárquica por categorias, gestão de carrinho de compras e checkout.
 
 ## Screenshots
-*(Coloca aqui 3 ou 4 imagens. Uma da loja, uma do carrinho, e uma do dashboard do Admin. Exemplo de código de imagem: `![Página Inicial](Docs/screenshot_home.png)`)*
+## 🗄️ Base de Dados
+A base de dados foi modelada em SQL Server. Abaixo o diagrama Entidade-Relacionamento:
+![Diagrama MER](Docs/ModeloER.png)
+
+## Aplicação
+![Página Inicial](Docs/homescreen.png)
+![Menus] (Docs/musicpage.png)
+![Dashboard do Admin](Docs/admin_edit.png)
+![Versão Mobile](Docs/mobile_test.mp4)
 
 ## Como correr o projeto localmente
 
