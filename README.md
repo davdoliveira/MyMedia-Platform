@@ -20,12 +20,12 @@ A base de dados foi modelada em SQL Server. Abaixo o diagrama Entidade-Relaciona
 ![Diagrama MER](Docs/ModeloER.png)
 
 ## Aplicação
-![Página Inicial]<img width="1337" height="888" alt="homescreen" src="https://github.com/user-attachments/assets/86f96b2a-0276-4a8d-a37e-2f61b67d9641" />
-
-![Menus] <img width="724" height="905" alt="musicpage" src="https://github.com/user-attachments/assets/10fb7cb5-eae3-4ecf-9470-ce9d05bdf082" />
-![Dashboard do Admin]<img width="1917" height="936" alt="admin_edit" src="https://github.com/user-attachments/assets/b34c19d9-ee0b-44e5-87c0-205561d9bfc4" />
-
-![Versão Mobile]<img width="452" height="940" alt="mobile_test" src="https://github.com/user-attachments/assets/dd960bbb-0309-45db-9342-0b51743557ce" />
+Página Inicial
+<img width="1337" height="888" alt="homescreen" src="https://github.com/user-attachments/assets/86f96b2a-0276-4a8d-a37e-2f61b67d9641" />
+Menus
+<img width="724" height="905" alt="musicpage" src="https://github.com/user-attachments/assets/10fb7cb5-eae3-4ecf-9470-ce9d05bdf082" />
+Dashboard do Admin
+<img width="1917" height="936" alt="admin_edit" src="https://github.com/user-attachments/assets/b34c19d9-ee0b-44e5-87c0-205561d9bfc4" />
 
 
 ## Como correr o projeto localmente
