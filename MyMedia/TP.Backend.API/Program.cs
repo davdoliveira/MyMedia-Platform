@@ -1,44 +1,42 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer; // <--- NOVO
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens; // <--- NOVO
-using System.Text; // <--- NOVO
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using TP.Backend.Data;
 using TP.Backend.Data.Entidades;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adicionar serviços ao contentor.
-
 builder.Services.AddControllers();
-// Configuração do Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// --- INICIO DA CONFIGURAÇÃO DA BD E IDENTITY ---
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (string.IsNullOrWhiteSpace(connectionString) || connectionString.Contains("[", StringComparison.Ordinal))
+{
+    throw new InvalidOperationException("Connection string 'DefaultConnection' is missing or still contains placeholders. Configure it via user secrets or environment variables.");
+}
 
-// 1. Configurar a Ligação SQL Server
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-
-// Atenção: Certifique-se que a classe ApplicationDbContext existe no projeto TP.Backend.Data
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Usa o caminho completo para garantir que é o da Microsoft
-builder.Services.AddIdentity<ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-// ==========================================================
-// 2. CONFIGURAÇÃO JWT
-// ==========================================================
-var jwtKey = builder.Configuration["Jwt:Key"] ?? throw new Exception("Jwt:Key em falta!");
+var jwtKey = builder.Configuration["Jwt:Key"];
+if (string.IsNullOrWhiteSpace(jwtKey) || jwtKey.Contains("[", StringComparison.Ordinal))
+{
+    throw new InvalidOperationException("Jwt:Key is missing or still contains placeholders. Configure it via user secrets or environment variables.");
+}
+
 var key = Encoding.ASCII.GetBytes(jwtKey);
+var issuer = builder.Configuration["Jwt:Issuer"];
+var audience = builder.Configuration["Jwt:Audience"];
 
 builder.Services.AddAuthentication(options =>
 {
-    // Define que o esquema padrão é Bearer (Token)
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
@@ -50,36 +48,31 @@ builder.Services.AddAuthentication(options =>
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"]
+        ValidateIssuer = !string.IsNullOrWhiteSpace(issuer),
+        ValidIssuer = issuer,
+        ValidateAudience = !string.IsNullOrWhiteSpace(audience),
+        ValidAudience = audience,
+        ValidateLifetime = true
     };
 });
-// ==========================================================
-// --- FIM DA CONFIGURAÇÃO ---
 
 var app = builder.Build();
 
-// ==========================================
-// BLOCO DE SEED DATA (Adiciona isto)
-// ==========================================
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+
     try
     {
-        // Chama o método estático que criámos
         await SeedData.Initialize(services);
     }
     catch (Exception ex)
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "Ocorreu um erro ao popular a base de dados.");
+        logger.LogError(ex, "Error while seeding the database.");
     }
 }
 
-// Configurar o pipeline de pedidos HTTP.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -87,8 +80,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication(); // <--- Verifica "Quem és tu?" (Lê o Token)
-app.UseAuthorization();  // <--- Verifica "O que podes fazer?"
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

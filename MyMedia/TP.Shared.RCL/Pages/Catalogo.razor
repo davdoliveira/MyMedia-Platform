@@ -4,17 +4,14 @@
 @inject IProdutosService ProdutosService
 @inject ICategoriasService CategoriasService
 
-@* --- ESTILO INCORPORADO (Para garantir que funciona) --- *@
 <style>
-    /* Contentor do Friso (A calha onde desliza) */
     .meu-friso-container {
         display: flex;
-        overflow-x: auto; /* Permite scroll lateral */
-        gap: 10px; /* Espaço entre botões */
+        overflow-x: auto;
+        gap: 10px;
         padding: 10px 0;
-        white-space: nowrap; /* Não deixa quebrar linha */
+        white-space: nowrap;
         margin-bottom: 15px;
-        /* Esconder scrollbar feia (mas manter funcionalidade) */
         scrollbar-width: thin;
         -ms-overflow-style: none;
     }
@@ -28,29 +25,26 @@
             border-radius: 4px;
         }
 
-    /* O Botão Individual */
     .meu-friso-btn {
         display: inline-block;
         padding: 8px 20px;
-        border-radius: 20px; /* Arredondado */
+        border-radius: 20px;
         border: 1px solid #ddd;
         background-color: white;
         color: #333;
         cursor: pointer;
         font-weight: 600;
         transition: all 0.2s;
-        flex-shrink: 0; /* Garante que não encolhe */
+        flex-shrink: 0;
     }
 
-        /* Efeito Hover */
         .meu-friso-btn:hover {
             background-color: #f0f0f0;
             transform: translateY(-2px);
         }
 
-        /* Botão Selecionado (Ativo) */
         .meu-friso-btn.ativo {
-            background-color: #007bff; /* Azul */
+            background-color: #007bff;
             color: white;
             border-color: #007bff;
             box-shadow: 0 4px 6px rgba(0,123,255, 0.3);
@@ -59,7 +53,7 @@
     .destaque-card {
         background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
         border: none;
-        border-left: 5px solid #ffc107; /* Amarelo Destaque */
+        border-left: 5px solid #ffc107;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         transition: transform 0.3s;
     }
@@ -80,7 +74,6 @@
 </style>
 
 <div class="container my-4">
-    @* --- 1. SECÇÃO DE DESTAQUE (NOVO) --- *@
     @if (ProdutoDestaque != null)
     {
         <div class="card mb-5 destaque-card">
@@ -113,7 +106,7 @@
             </div>
         </div>
     }
-    @* ------------------------------------ *@
+
     <h2 class="text-center mb-4">Catálogo</h2>
 
     @if (TodasCategorias == null)
@@ -129,6 +122,7 @@
                      @onclick="() => SelecionarNivel1(null)">
                     Todos
                 </div>
+
                 @foreach (var cat in CategoriasNivel1)
                 {
                     <div class="meu-friso-btn @(CatNivel1Id == cat.Id ? "ativo" : "")"
@@ -228,12 +222,10 @@
     private List<CategoriaDto>? TodasCategorias;
     private List<ProdutoDto>? ListaProdutos;
     private ProdutoDto? ProdutoDestaque;
-    // Listas para os Frisos
     private List<CategoriaDto> CategoriasNivel1 = new();
     private List<CategoriaDto> CategoriasNivel2 = new();
     private List<CategoriaDto> CategoriasNivel3 = new();
 
-    // Seleção atual
     private int? CatNivel1Id;
     private int? CatNivel2Id;
     private int? CatNivel3Id;
@@ -243,17 +235,13 @@
         try
         {
             TodasCategorias = await CategoriasService.GetCategoriasAsync();
-
-            // Nível 1 são as que não têm Pai (CategoriaPaiId == null)
             CategoriasNivel1 = TodasCategorias.Where(c => c.CategoriaPaiId == null).ToList();
 
-            // Carrega produtos iniciais
             await CarregarProdutos(null);
             ProdutoDestaque = await ProdutosService.GetProdutoDestaqueAsync();
         }
         catch
         {
-            // Evita crash se a API falhar
             TodasCategorias = new List<CategoriaDto>();
             ListaProdutos = new List<ProdutoDto>();
         }
@@ -296,8 +284,8 @@
 
     private async Task CarregarProdutos(int? catId)
     {
-        ListaProdutos = null; // Ativa o loading
-        StateHasChanged(); // Força atualização da UI
+        ListaProdutos = null;
+        StateHasChanged();
         ListaProdutos = await ProdutosService.GetProdutosAsync(catId);
     }
 }

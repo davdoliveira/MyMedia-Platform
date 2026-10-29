@@ -39,7 +39,9 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="@item.ImagemUrl" class="rounded me-3" style="width: 50px; height: 50px; object-fit: cover;"
+                                                <img src="@item.ImagemUrl"
+                                                     class="rounded me-3"
+                                                     style="width: 50px; height: 50px; object-fit: cover;"
                                                      onerror="this.src='/img/sem-imagem.png'" />
                                                 <div>
                                                     <div class="fw-bold">@item.Titulo</div>
@@ -87,7 +89,6 @@
 @code {
     protected override void OnInitialized()
     {
-        // Subscrever ao evento para atualizar a página se o carrinho mudar
         CarrinhoService.OnChange += StateHasChanged;
     }
 
@@ -98,51 +99,38 @@
 
     private async Task Checkout()
     {
-        // 1. Verificar se está logado
         var authState = await AuthStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
 
         if (!user.Identity?.IsAuthenticated ?? true)
         {
-            // Se não estiver logado, manda para o login
             Navigation.NavigateTo("/login");
             return;
         }
 
-        // 2. Preparar os dados para envio (Converter ProdutoDto em CarrinhoItemDto)
         var itensParaEnvio = CarrinhoService.Itens.Select(i => new CarrinhoItemDto
         {
             ProdutoId = i.Id,
             Titulo = i.Titulo,
-            Quantidade = 1, // Nota: Se tiveres lógica de quantidades, ajusta aqui
+            Quantidade = 1,
             PrecoUnitario = i.Preco
         }).ToList();
 
-        // 3. Enviar para a API
         var sucesso = await EncomendasService.FinalizarEncomendaAsync(itensParaEnvio);
 
         if (sucesso)
         {
-            // Limpar carrinho e avisar
-            // (Idealmente terias um método LimparCarrinho no serviço)
             while (CarrinhoService.Itens.Any())
             {
                 CarrinhoService.RemoverItem(CarrinhoService.Itens.First());
             }
 
-            // Redirecionar para uma página de sucesso (ou home)
             Navigation.NavigateTo("/");
-            // Aqui podias mostrar um "Toast" ou mensagem de sucesso
-        }
-        else
-        {
-            // Tratar erro
-            Console.WriteLine("Erro ao finalizar encomenda");
         }
     }
+
     public void Dispose()
     {
-        // Boa prática: Desligar o evento quando saímos da página
         CarrinhoService.OnChange -= StateHasChanged;
     }
 }
