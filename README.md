@@ -14,10 +14,8 @@ O sistema suporta três perfis de utilizador distintos:
 * **Fornecedor:** Submissão de produtos para aprovação (estado Pendente -> Ativo), definição de preço base e visualização do catálogo próprio.
 * **Cliente:** Navegação no catálogo, pesquisa hierárquica por categorias, gestão de carrinho de compras e checkout.
 
-## Screenshots
 ## Base de Dados
-A base de dados foi modelada em SQL Server. Abaixo o diagrama Entidade-Relacionamento:
-![Diagrama MER](Docs/ModeloER.png)
+A base de dados foi modelada em SQL Server.
 
 ## Aplicação
 
