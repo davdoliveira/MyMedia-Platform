@@ -33,9 +33,3 @@ A base de dados foi modelada em SQL Server.
 <img src="https://github.com/user-attachments/assets/b34c19d9-ee0b-44e5-87c0-205561d9bfc4" width="800" alt="admin_edit" />
 
 </div>
-
-## Como correr o projeto localmente
-
-1. **Clonar o repositório:**
-   ```bash
-   git clone [https://github.com/O-Teu-User/O-Teu-Repositorio.git](https://github.com/O-Teu-User/O-Teu-Repositorio.git)
