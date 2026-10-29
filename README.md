@@ -15,18 +15,26 @@ O sistema suporta três perfis de utilizador distintos:
 * **Cliente:** Navegação no catálogo, pesquisa hierárquica por categorias, gestão de carrinho de compras e checkout.
 
 ## Screenshots
-## 🗄️ Base de Dados
+## Base de Dados
 A base de dados foi modelada em SQL Server. Abaixo o diagrama Entidade-Relacionamento:
 ![Diagrama MER](Docs/ModeloER.png)
 
 ## Aplicação
-Página Inicial
-<img width="1337" height="888" alt="homescreen" src="https://github.com/user-attachments/assets/86f96b2a-0276-4a8d-a37e-2f61b67d9641" />
-Menus
-<img width="724" height="905" alt="musicpage" src="https://github.com/user-attachments/assets/10fb7cb5-eae3-4ecf-9470-ce9d05bdf082" />
-Dashboard do Admin
-<img width="1917" height="936" alt="admin_edit" src="https://github.com/user-attachments/assets/b34c19d9-ee0b-44e5-87c0-205561d9bfc4" />
 
+<div align="center">
+
+### Página Inicial
+<img src="https://github.com/user-attachments/assets/86f96b2a-0276-4a8d-a37e-2f61b67d9641" width="800" alt="homescreen" />
+<br><br>
+
+### Catálogo e Navegação
+<img src="https://github.com/user-attachments/assets/10fb7cb5-eae3-4ecf-9470-ce9d05bdf082" width="350" alt="musicpage" />
+<br><br>
+
+### Dashboard do Admin
+<img src="https://github.com/user-attachments/assets/b34c19d9-ee0b-44e5-87c0-205561d9bfc4" width="800" alt="admin_edit" />
+
+</div>
 
 ## Como correr o projeto localmente
 
