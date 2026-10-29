@@ -1,0 +1,6 @@
+**/wwwroot/** linguist-vendored
+**/*.css linguist-vendored
+**/*.js linguist-vendored
+**/*.map linguist-vendored
+**/*.razor linguist-language=C#
+**/*.cshtml linguist-language=C#
